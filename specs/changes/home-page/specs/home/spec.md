@@ -11,9 +11,10 @@
 - HOME-03 — The system MUST show three highlight cards, in this order, each with a photo: "Servicios de terapia psicológica Online y Presencial", "Alquiler de consultorios para profesionales en salud mental", "Servicios de acompañamiento psicológico grupal" | test: ✅
   - GIVEN the Home page | WHEN it loads | THEN the three card titles appear in that order
   - GIVEN the Home page | WHEN it loads | THEN each card shows a photo with a non-empty description
-- HOME-04 — The system MUST show the section "Detrás de Casita" (anchor `quienes-somos`) with the team description of the mockup and a group photo of the team | test: ✅
+- HOME-04 — The system MUST show the section "Detrás de Casita" (anchor `quienes-somos`) with the team description of the mockup, its closing sentence emphasized, and a group photo of the team | test: ✅
   - GIVEN the Home page | WHEN it loads | THEN a section headed "Detrás de Casita" has the id `quienes-somos`
-  - GIVEN the Home page | WHEN it loads | THEN that section shows the text starting "En Casa Ánima somos un equipo de psicólogos y psicólogas" and ending "Creemos que cada historia merece un espacio propio para ser escuchada y comprendida."
+  - GIVEN the Home page | WHEN it loads | THEN that section shows the text "En Casa Ánima somos un equipo de psicólogos y psicólogas con diferentes enfoques y formas de acompañar. Nos une una mirada humana, cálida y respetuosa, en la que integramos la psicoterapia y, cuando es pertinente, recursos artísticos y vivenciales para acompañarte en tu proceso de autoconocimiento y transformación. Creemos que cada historia merece un espacio propio para ser escuchada y comprendida."
+  - GIVEN the Home page | WHEN it loads | THEN the sentence "Creemos que cada historia merece un espacio propio para ser escuchada y comprendida." is emphasized
   - GIVEN the Home page | WHEN it loads | THEN that section shows a group photo with a non-empty description
 - HOME-05 — The system MUST show the section "Tu proceso puede comenzar con una conversación" with the link "Isa te asesora" that opens WhatsApp in a new tab | test: ✅
   - GIVEN the Home page | WHEN it loads | THEN a section headed "Tu proceso puede comenzar con una conversación" shows the text "Encuentra al profesional que haga match contigo en menos de 3 minutos haciendo el test que creamos para ti"

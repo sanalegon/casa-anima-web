@@ -20,18 +20,19 @@ describe("AboutSection", () => {
 
   test("HOME-04 should show the team description when the Home page loads", () => {
     const text =
-      page.querySelector("section")?.textContent?.replace(/\s+/g, " ") ?? "";
+      page.querySelector("p")?.textContent?.replace(/\s+/g, " ").trim() ?? "";
 
-    expect(text).toContain(
-      "En Casa Ánima somos un equipo de psicólogos y psicólogas",
+    expect(text).toBe(
+      "En Casa Ánima somos un equipo de psicólogos y psicólogas con diferentes enfoques y formas de acompañar. Nos une una mirada humana, cálida y respetuosa, en la que integramos la psicoterapia y, cuando es pertinente, recursos artísticos y vivenciales para acompañarte en tu proceso de autoconocimiento y transformación. Creemos que cada historia merece un espacio propio para ser escuchada y comprendida.",
     );
-    expect(
-      text
-        .trim()
-        .endsWith(
-          "Creemos que cada historia merece un espacio propio para ser escuchada y comprendida.",
-        ),
-    ).toBe(true);
+  });
+
+  test("HOME-04 should emphasize the closing sentence when the Home page loads", () => {
+    const emphasized = page.querySelector("strong")?.textContent?.trim();
+
+    expect(emphasized).toBe(
+      "Creemos que cada historia merece un espacio propio para ser escuchada y comprendida.",
+    );
   });
 
   test("HOME-04 should show a described group photo when the Home page loads", () => {
