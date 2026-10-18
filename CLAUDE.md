@@ -1,41 +1,46 @@
-# [Project name]
+# Casa Ánima Web
 
 ## Product
-- [What the product does, in one line — e.g. "REST API for orders", "CLI that imports CSV files"]
+- Public website of Casa Ánima, a psychology centre in Medellín: therapy services, room rental for therapists, team, therapist match test and contact.
+- Design source: Canva design `DAHYTOAY8e4` "Página web Casa Ánima" — read layout and copy from it with the Canva MCP.
 - Behavior lives as FRs in `specs/current/<capability>/spec.md` — NEVER define it here.
 
 ## Stack
-- Language: [e.g. TypeScript · Python · Go]
-- Framework: [e.g. React + Vite · Express · FastAPI]
-- App folder: [e.g. `app/` — run all commands from there]
-- Testing: [e.g. Vitest + Testing Library · Jest · pytest]
-- Lint: [e.g. oxlint · eslint · ruff]
-- Run locally: [e.g. `npm run dev` · `uvicorn app.main:app --reload`]
+- Language: TypeScript (strict)
+- Framework: Astro — static pages, React islands only for interactive parts
+- App folder: `.` (repo root) — run all commands from there
+- Testing: Vitest + Testing Library — `.astro` components rendered with the Astro Container API
+- Lint: oxlint
+- Run locally: `npm run dev`
 
 ## Layer Structure — Vertical Slice
 ```
-[src]/
-  [features]/
-    [feature-name]/
-      [entry]          ← entry layer: UI component · HTTP route · CLI command — holds simple state, no business rules — always
-      [rules]          ← logic layer: pure business rules — always when there is a rule
-      [tests]          ← tests of the slice — always
-      [public API]     ← the only file other slices import (e.g. index.ts · __init__.py) — always
-      [stateful logic] ← logic layer: hook · service · use case — only when state or I/O outgrows the entry layer, or is reused
-      [types]          ← types, schemas, contracts, no runtime logic — only when 2+ files share them
-  [shared]/            ← only code used by 2+ slices — create when first needed
-  [app entry]          ← app composition: wires slices together, no feature logic
+src/
+  features/
+    <feature-name>/
+      <Name>.astro · <Name>.tsx  ← entry layer: Astro component for static content · React island for interaction — holds simple state, no business rules — always
+      <rule>.ts                  ← logic layer: pure business rules — always when there is a rule
+      <Name>.test.ts(x)          ← tests of the slice — always
+      index.ts                   ← public API: the only file other slices import — always
+      use<Name>.ts               ← logic layer: React hook — only when state outgrows the island, or is reused
+      types.ts                   ← types, schemas, contracts, no runtime logic — only when 2+ files share them
+  shared/                        ← only code used by 2+ slices — create when first needed
+  images/                        ← images imported through `astro:assets`
+  layouts/                       ← app composition: page shell (head, nav, footer slots), no feature logic
+  pages/                         ← app composition: Astro routes that wire slices together, no feature logic
 ```
 - Layers are responsibilities, not files — create an optional file only when its condition is true.
 
 ## Conventions
-- Naming: [e.g. PascalCase components, camelCase functions · snake_case modules and functions]
-- One feature = one folder in `[features]/`
+- Naming: PascalCase components (`.astro`, `.tsx`), camelCase functions and `.ts` files, kebab-case feature folders and routes
+- UI copy in Spanish (es-CO) — code, specs and docs in English
+- One feature = one folder in `src/features/`
 - NEVER import a slice's internal files — always through its public API
 - Every `.md` follows `docs/doc-rules.md` — new docs start from their template
 
 ## Hard Rules
-- NEVER use: [forbidden patterns — e.g. `any`, default exports, class components, inline `style` · global mutable state]
+- NEVER use: `any`, default exports (except where Astro or a config file requires one), class components, inline `style`, global mutable state
+- NEVER hydrate a React island (`client:*`) for content with no interaction — render it as `.astro`
 - NEVER put business rules in the entry layer — extract them to the logic layer
 - NEVER let the logic layer know the transport (DOM, HTTP, terminal) — it takes and returns plain data
 - NEVER add comments to the code you write or change — names and small functions must explain the intent; leave existing comments as they are
@@ -89,7 +94,7 @@ Classify every request before touching code.
   - Full cycle: the FR goes in the change folder's delta spec (`specs/<capability>/spec.md`) — approved before any code.
   - Inline: add or edit the FR in `specs/current/<capability>/spec.md` first — a new FR takes the file's `Next ID` and advances it — then test, then code — stage all three together.
 - No observable behavior change (refactor, styling, docs, chore): NEVER edit FRs.
-- ALWAYS start the name of a test that covers an FR with its FR ID, in the form the test runner allows: [e.g. `ORDER-01 should <result> when <condition>` · `test_order_01_<result>_when_<condition>`].
+- ALWAYS start the name of a test that covers an FR with its FR ID, in the form the test runner allows: `HOME-01 should <result> when <condition>`.
 - Check an FR with `bash .claude/scripts/gates.sh fr <FR-ID>` — mark `test: ✅` only when it passes and every GIVEN/WHEN/THEN has a test.
 
 ## Working Protocol — STRICT
@@ -98,8 +103,8 @@ These are Hard Rules. Any violation is a protocol breach.
 - NEVER start a new task without explicit approval — per task ("yes" or "go") or as a batch ("go up to ID-00N")
 - NEVER assume silence = approval — wait for a clear yes
 - Any reply about an active feature ("go", "yes", "fix: <what>", "go up to ID-00N") in a new session or after `/clear`: load `.claude/skills/create-feature/SKILL.md` first
-- Commit message format: [e.g. `type(scope): description` · `type(PROJ-123): description`] — type is one of `feat | fix | refactor | perf | test | docs | chore`
-- Branch name: [e.g. `type/<name>` · `type/PROJ-123-<name>`] — type: `feat` full cycle · `refactor` · `perf` — ask for the ticket ID when the format has one
+- Commit message format: `type(scope): description` — type is one of `feat | fix | refactor | perf | test | docs | chore`
+- Branch name: `type/<name>` — type: `feat` full cycle · `refactor` · `perf`
 - Commit once per change, never per task — full cycle: when the feature closes · inline: after its close sequence — propose the message, the human commits
 - NEVER skip the task close sequence — it is mandatory after every task and every inline change:
   ```
