@@ -1,0 +1,61 @@
+---
+import { Image } from "astro:assets";
+import potSun from "../../assets/decor/pot-sun.png";
+import potSunVines from "../../assets/decor/pot-sun-vines.png";
+
+interface Props {
+  photo: ImageMetadata;
+  alt: string;
+}
+
+const { photo, alt } = Astro.props;
+const pots = [potSun, potSunVines, potSun, potSunVines];
+---
+
+<div class="frame">
+  <Image class="photo" src={photo} alt={alt} width={400} height={400} />
+  <div class="pots">
+    {pots.map((pot) => (
+      <Image class="pot" src={pot} alt="" width={160} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .frame {
+    position: relative;
+    width: min(13rem, 70%);
+    margin-inline: auto;
+  }
+
+  .photo {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .pots {
+    position: absolute;
+    bottom: -10%;
+    left: 50%;
+    translate: -50% 0;
+    width: 120%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    pointer-events: none;
+  }
+
+  .pot {
+    width: 25%;
+    height: auto;
+    max-width: none;
+  }
+
+  .pot:first-child,
+  .pot:last-child {
+    translate: 0 -25%;
+  }
+</style>

@@ -1,0 +1,151 @@
+---
+import { whatsappUrl } from "../../shared/contact";
+
+const steps = [
+  {
+    title: "Hablemos",
+    icon: "M12 3a8 8 0 0 0-6.9 12L4 20l5.2-1.1A8 8 0 1 0 12 3Z",
+    text: "Escríbenos por WhatsApp si tienes dudas sobre nuestros servicios, tarifas o modalidades. ¡Estamos aquí para orientarte!",
+  },
+  {
+    title: "Encuentra tu terapeuta",
+    icon: "M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.4A4 4 0 0 1 19 10c0 5.6-7 10-7 10Z",
+    text: "Elige la opción Match y responde un breve test para encontrar al profesional que mejor se ajuste a tus necesidades.",
+  },
+  {
+    title: "Diligencia el formulario",
+    icon: "M9 4h6v3H9zM7 5H5v15h14V5h-2M8.5 12h7M8.5 16h7",
+    text: "Completa nuestro formulario de inicio de proceso en Google Forms para compartirnos la información necesaria para comenzar.",
+  },
+  {
+    title: "Recibe la confirmación",
+    icon: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM8 12.5l3 3 5-6",
+    text: "Te contactaremos por WhatsApp para compartirte los detalles de confirmación, las políticas del servicio y la información importante para tu proceso.",
+  },
+  {
+    title: "Agenda tu primer encuentro",
+    icon: "M4 6h16v14H4zM4 10h16M8 3v4M16 3v4M9 15l2 2 4-4",
+    text: "En un plazo máximo de dos días hábiles, tu terapeuta se comunicará contigo para coordinar la primera sesión.",
+  },
+];
+---
+
+<section class="invite">
+  <h2>Tu proceso puede comenzar con una conversación</h2>
+  <p>
+    Encuentra al profesional que haga match contigo en menos de 3 minutos
+    haciendo el test que creamos para ti
+  </p>
+  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
+    Isa te asesora
+  </a>
+</section>
+
+<section class="steps">
+  <h2>Cómo iniciar tu proceso</h2>
+  <ol>
+    {steps.map(({ title, icon, text }) => (
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d={icon} />
+        </svg>
+        <div>
+          <strong>{title}</strong>
+          <p>{text}</p>
+        </div>
+      </li>
+    ))}
+  </ol>
+</section>
+
+<style>
+  section {
+    display: grid;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem;
+    text-align: center;
+    justify-items: center;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-slate);
+  }
+
+  .invite p {
+    margin: 0;
+    max-width: 40rem;
+    font-family: var(--font-heading);
+    color: var(--color-slate);
+  }
+
+  .invite a {
+    padding: 1rem 2.5rem;
+    border-radius: 2rem;
+    background: var(--color-pill);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-mist);
+    text-decoration: none;
+  }
+
+  ol {
+    display: grid;
+    gap: 2rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+    text-align: left;
+  }
+
+  li {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    counter-increment: step;
+  }
+
+  svg {
+    flex: none;
+    box-sizing: content-box;
+    width: 2rem;
+    height: 2rem;
+    padding: 1.25rem;
+    border-radius: 50%;
+    background: #e3ecf8;
+    fill: none;
+    stroke: #3b6fc0;
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  strong {
+    color: var(--color-slate);
+  }
+
+  strong::before {
+    content: counter(step) ". ";
+  }
+
+  li p {
+    margin: 0.25rem 0 0;
+  }
+
+  @media (min-width: 640px) {
+    ol {
+      grid-template-columns: repeat(6, 1fr);
+      max-width: 72rem;
+    }
+
+    li {
+      grid-column: span 2;
+    }
+
+    li:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+  }
+</style>

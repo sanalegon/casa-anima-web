@@ -1,0 +1,63 @@
+---
+import { address, whatsappUrl } from "../../shared/contact";
+
+const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(`${address}, Medellín`)}&output=embed`;
+---
+
+<section id="contacto">
+  <h2>¿Dónde nos vemos?</h2>
+  <iframe title="Mapa de Casa Ánima" src={mapUrl} loading="lazy"></iframe>
+  <div>
+    <p>{address}</p>
+    <p>Virtual en todo el mundo</p>
+  </div>
+  <a href={whatsappUrl}>Escríbenos por WhatsApp</a>
+</section>
+
+<style>
+  section {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 3rem 1.5rem;
+    background: var(--color-teal);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: #ffffff;
+  }
+
+  p {
+    margin: 0;
+    font-size: 1.125rem;
+  }
+
+  p + p {
+    font-weight: 700;
+  }
+
+  iframe {
+    width: 100%;
+    min-height: 20rem;
+    border: 0;
+  }
+
+  a {
+    color: #ffffff;
+  }
+
+  @media (min-width: 640px) {
+    section {
+      grid-template-columns: 1fr 1.5fr 1fr;
+      padding: 2rem 4rem;
+    }
+
+    a {
+      grid-column: 1 / -1;
+    }
+  }
+</style>

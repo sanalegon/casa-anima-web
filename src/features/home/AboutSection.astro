@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import teamGroup from "../../assets/home/team-group.jpg";
+---
+
+<section id="quienes-somos">
+  <Image
+    src={teamGroup}
+    alt="Las cinco personas del equipo de Casa Ánima sonriendo frente a un mural nocturno"
+    width={800}
+  />
+  <div>
+    <h2>Detrás de Casita</h2>
+    <p>
+      En Casa Ánima somos un equipo de psicólogos y psicólogas que acompañamos
+      procesos terapéuticos desde la calidez, el respeto y el cuidado. Creemos
+      que cada historia merece un espacio propio para ser escuchada y
+      comprendida.
+    </p>
+  </div>
+</section>
+
+<style>
+  section {
+    display: grid;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 2rem 1.5rem;
+    background: var(--color-sky);
+  }
+
+  img {
+    justify-self: center;
+  }
+
+  h2 {
+    margin: 0 0 0.75rem;
+    font-weight: 400;
+    font-size: 1.75rem;
+  }
+
+  p {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: var(--color-slate);
+  }
+
+  @media (min-width: 640px) {
+    section {
+      grid-template-columns: 2fr 3fr;
+      padding: 2rem 4rem 0;
+    }
+
+    img {
+      align-self: end;
+    }
+  }
+</style>

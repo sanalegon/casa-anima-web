@@ -1,0 +1,89 @@
+---
+import PottedPhoto from "./PottedPhoto.astro";
+import santiagoZuniga from "../../assets/home/team-mustard-jacket.jpeg";
+import luisaGomez from "../../assets/home/team-glasses-vest.jpeg";
+import manuelaNavarro from "../../assets/home/team-curly-hair.jpeg";
+import mariaCamilaGonzalez from "../../assets/home/team-orange-hair.jpeg";
+import santiagoOsorio from "../../assets/home/team-green-polo.jpeg";
+
+const members = [
+  {
+    name: "Santiago Zuñiga",
+    photo: santiagoZuniga,
+  },
+  {
+    name: "Luisa Gómez",
+    photo: luisaGomez,
+  },
+  {
+    name: "Manuela Navarro",
+    photo: manuelaNavarro,
+  },
+  {
+    name: "Maria Camila González",
+    photo: mariaCamilaGonzalez,
+  },
+  {
+    name: "Santiago Osorio",
+    photo: santiagoOsorio,
+  },
+];
+---
+
+<section id="equipo">
+  <h2>Equipo Casita</h2>
+  <ul>
+    {members.map(({ name, photo }) => (
+      <li>
+        <PottedPhoto photo={photo} alt={name} />
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  section {
+    display: grid;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-slate);
+  }
+
+  ul {
+    display: grid;
+    gap: 3rem 1.5rem;
+    grid-template-columns: repeat(6, 1fr);
+    margin: 0 auto;
+    padding: 0;
+    max-width: 64rem;
+    list-style: none;
+  }
+
+  li {
+    grid-column: span 6;
+    text-align: center;
+    align-self: start;
+  }
+
+  @media (min-width: 640px) {
+    li {
+      grid-column: span 3;
+    }
+  }
+
+  @media (min-width: 960px) {
+    li {
+      grid-column: span 2;
+    }
+
+    li:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+  }
+</style>

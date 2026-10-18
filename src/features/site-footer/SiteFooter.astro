@@ -1,0 +1,42 @@
+---
+import { address, email, phoneLabel, whatsappUrl } from "../../shared/contact";
+---
+
+<footer>
+  <h2>¡Nos vemos en Casita!</h2>
+  <ul>
+    <li>
+      <a href={whatsappUrl}>{phoneLabel}</a>
+    </li>
+    <li>
+      <a href={`mailto:${email}`}>{email}</a>
+    </li>
+    <li>{address}</li>
+  </ul>
+</footer>
+
+<style>
+  footer {
+    padding: 2.5rem 1.5rem;
+    background: var(--color-teal);
+    color: #ffffff;
+    text-align: center;
+  }
+
+  h2 {
+    margin: 0 0 1rem;
+    color: #ffffff;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  a {
+    color: #ffffff;
+  }
+</style>

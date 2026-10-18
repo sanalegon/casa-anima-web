@@ -1,0 +1,116 @@
+---
+import PottedPhoto from "./PottedPhoto.astro";
+import terapia from "../../assets/home/card-terapia.jpg";
+import alquiler from "../../assets/home/service-alquiler.jpeg";
+import talleres from "../../assets/home/service-talleres.jpeg";
+import perro from "../../assets/home/service-perro.jpeg";
+import convenios from "../../assets/home/service-convenios.jpeg";
+import formacion from "../../assets/home/service-formacion.jpeg";
+
+const services = [
+  {
+    title: "Servicios de terapia psicológica Online y Presencial",
+    photo: terapia,
+    alt: "Sesión de terapia psicológica entre dos personas",
+  },
+  {
+    title: "Alquiler de consultorios para profesionales en salud mental",
+    photo: alquiler,
+    alt: "Grupo de personas reunidas en una sala del consultorio con una reja blanca en la ventana",
+  },
+  {
+    title: "Talleres y servicios de acompañamiento grupal a organizaciones",
+    photo: talleres,
+    alt: "Taller grupal con personas participando en una actividad",
+  },
+  {
+    title: "Certificado de perro de apoyo emocional",
+    photo: perro,
+    alt: "Personas haciendo collage con lápices, tijeras y recortes sobre una mesa de colores",
+  },
+  {
+    title: "Convenios organizacionales de atención en salud mental",
+    photo: convenios,
+    alt: "Reunión de trabajo con un equipo de una organización",
+  },
+  {
+    title: "Formación continua para terapeutas",
+    photo: formacion,
+    alt: "Grupo de terapeutas en una jornada de formación",
+  },
+];
+---
+
+<section id="servicios">
+  <h2>Conoce nuestros servicios</h2>
+  <ul>
+    {services.map(({ title, photo, alt }) => (
+      <li>
+        <PottedPhoto photo={photo} alt={alt} />
+        <h3>{title}</h3>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  section {
+    display: grid;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem;
+  }
+
+  h2 {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-slate);
+  }
+
+  ul {
+    display: grid;
+    gap: 3rem 1.5rem;
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    text-align: center;
+  }
+
+  h3 {
+    margin: 0;
+    max-width: 9.5rem;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--color-teal);
+  }
+
+  @media (min-width: 640px) {
+    ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    li {
+      flex-direction: row-reverse;
+    }
+
+    h3 {
+      flex: 1;
+      max-width: 9.5rem;
+    }
+  }
+</style>

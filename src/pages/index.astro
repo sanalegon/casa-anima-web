@@ -1,0 +1,12 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { Home } from "../features/home";
+import { SiteFooter } from "../features/site-footer";
+import { SiteHeader } from "../features/site-header";
+---
+
+<BaseLayout title="Casa Ánima | Terapia psicológica en Medellín">
+  <SiteHeader slot="header" />
+  <Home />
+  <SiteFooter slot="footer" />
+</BaseLayout>
