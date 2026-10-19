@@ -5,19 +5,20 @@ import texture from "../../assets/decor/texture-teal.png";
 import branchLeft from "../../assets/decor/branch-left.png";
 import branchRight from "../../assets/decor/branch-right.png";
 
+const home = import.meta.env.BASE_URL.replace(/\/$/, "") + "/";
 const links = [
-  { label: "Inicio", href: "/" },
-  { label: "Quiénes somos", href: "/#quienes-somos" },
-  { label: "Servicios", href: "/#servicios" },
-  { label: "Equipo", href: "/#equipo" },
-  { label: "Contáctanos", href: "/#contacto" },
+  { label: "Inicio", href: home },
+  { label: "Quiénes somos", href: `${home}#quienes-somos` },
+  { label: "Servicios", href: `${home}#servicios` },
+  { label: "Equipo", href: `${home}#equipo` },
+  { label: "Contáctanos", href: `${home}#contacto` },
 ];
 ---
 
 <header>
   <Image class="branch branch-left" src={branchLeft} alt="" height={240} />
   <Image class="branch branch-right" src={branchRight} alt="" height={240} />
-  <a class="logo" href="/">
+  <a class="logo" href={home}>
     <Image src={logo} alt="Casa Ánima" height={160} />
   </a>
   <nav aria-label="Principal">

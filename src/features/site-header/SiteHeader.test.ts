@@ -16,6 +16,12 @@ describe("SiteHeader", () => {
     expect(getByRole(banner, "img", { name: "Casa Ánima" })).toBeTruthy();
   });
 
+  test("LAYOUT-01 should link the logo to the site base when the page loads", () => {
+    const logoLink = getByRole(page.body, "link", { name: "Casa Ánima" });
+
+    expect(logoLink.getAttribute("href")).toBe("/casa-anima-web/");
+  });
+
   test("LAYOUT-01 should list the five links in order with their targets when the page loads", () => {
     const links = getByRole(page.body, "navigation").querySelectorAll("a");
 
@@ -25,11 +31,11 @@ describe("SiteHeader", () => {
         link.getAttribute("href"),
       ]),
     ).toEqual([
-      ["Inicio", "/"],
-      ["Quiénes somos", "/#quienes-somos"],
-      ["Servicios", "/#servicios"],
-      ["Equipo", "/#equipo"],
-      ["Contáctanos", "/#contacto"],
+      ["Inicio", "/casa-anima-web/"],
+      ["Quiénes somos", "/casa-anima-web/#quienes-somos"],
+      ["Servicios", "/casa-anima-web/#servicios"],
+      ["Equipo", "/casa-anima-web/#equipo"],
+      ["Contáctanos", "/casa-anima-web/#contacto"],
     ]);
   });
 });
