@@ -2,8 +2,8 @@
 
 ## Requirement Deltas
 ### ADDED
-- LAYOUT-01 — The system MUST show, on every page, a header with the Casa Ánima logo and a navigation with the links Inicio, Quiénes somos, Servicios, Equipo and Contáctanos, in that order, pointing to `/`, `/#quienes-somos`, `/#servicios`, `/#equipo` and `/#contacto` | test: ✅
-  - GIVEN any page | WHEN it loads | THEN a banner shows an image named "Casa Ánima"
+- LAYOUT-01 — The system MUST show, on every page, a header with the Casa Ánima logo and a navigation with the links Inicio, Quiénes somos, Servicios, Equipo and Contáctanos, in that order, pointing to `/casa-anima-web/`, `/casa-anima-web/#quienes-somos`, `/casa-anima-web/#servicios`, `/casa-anima-web/#equipo` and `/casa-anima-web/#contacto` — the site is served from the GitHub Pages sub-path `/casa-anima-web/` | test: ✅
+  - GIVEN any page | WHEN it loads | THEN a banner shows an image named "Casa Ánima" that links to `/casa-anima-web/`
   - GIVEN any page | WHEN it loads | THEN a navigation lists the five links in that order with those targets
 - LAYOUT-02 — The system MUST show, on every page, a footer with "¡Nos vemos en Casita!", the WhatsApp number, the email and the address | test: ✅
   - GIVEN any page | WHEN it loads | THEN the footer shows the heading "¡Nos vemos en Casita!"
