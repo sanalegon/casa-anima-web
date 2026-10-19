@@ -26,9 +26,12 @@ const pots = [potSun, potSunVines, potSun, potSunVines];
     position: relative;
     width: min(13rem, 70%);
     margin-inline: auto;
+    isolation: isolate;
   }
 
   .photo {
+    position: relative;
+    z-index: 1;
     display: block;
     width: 100%;
     aspect-ratio: 1;
@@ -39,11 +42,10 @@ const pots = [potSun, potSunVines, potSun, potSunVines];
   .pots {
     position: absolute;
     bottom: -10%;
-    left: 50%;
-    translate: -50% 0;
+    left: -10%;
     width: 120%;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: flex-end;
     pointer-events: none;
   }
@@ -52,10 +54,17 @@ const pots = [potSun, potSunVines, potSun, potSunVines];
     width: 25%;
     height: auto;
     max-width: none;
+    z-index: 2;
+  }
+
+  .pot + .pot {
+    margin-left: -4%;
   }
 
   .pot:first-child,
   .pot:last-child {
-    translate: 0 -25%;
+    z-index: 0;
+    width: 32.5%;
+    translate: 0 -20%;
   }
 </style>

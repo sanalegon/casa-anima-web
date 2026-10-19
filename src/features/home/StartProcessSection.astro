@@ -1,5 +1,9 @@
 ---
-import { whatsappUrl } from "../../shared/contact";
+import { Image } from "astro:assets";
+import { adviserWhatsappUrl } from "../../shared/contact";
+import leafSprig from "../../assets/decor/leaf-sprig.png";
+import sparklesLeft from "../../assets/decor/sparkles-left.png";
+import sparklesRight from "../../assets/decor/sparkles-right.png";
 
 const steps = [
   {
@@ -30,35 +34,84 @@ const steps = [
 ];
 ---
 
-<section class="invite">
-  <h2>Tu proceso puede comenzar con una conversación</h2>
-  <p>
-    Encuentra al profesional que haga match contigo en menos de 3 minutos
-    haciendo el test que creamos para ti
-  </p>
-  <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-    Isa te asesora
-  </a>
-</section>
-
-<section class="steps">
-  <h2>Cómo iniciar tu proceso</h2>
-  <ol>
-    {steps.map(({ title, icon, text }) => (
-      <li>
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d={icon} />
-        </svg>
-        <div>
-          <strong>{title}</strong>
-          <p>{text}</p>
-        </div>
-      </li>
-    ))}
-  </ol>
-</section>
+<div class="process">
+  <Image class="leaf leaf-bottom" src={leafSprig} alt="" height={288} />
+  <Image class="leaf leaf-top" src={leafSprig} alt="" height={288} />
+  <section class="steps">
+    <h2>Conoce el paso a paso</h2>
+    <ol>
+      {steps.map(({ title, icon, text }) => (
+        <li>
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d={icon} />
+          </svg>
+          <div>
+            <strong>{title}</strong>
+            <p>{text}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+  <section class="invite">
+    <div class="copy">
+      <Image
+        class="sparkles sparkles-left"
+        src={sparklesLeft}
+        alt=""
+        height={80}
+      />
+      <h2>Tu proceso puede comenzar con una conversación</h2>
+      <p>
+        Encuentra al profesional que haga match contigo en menos de 3 minutos
+        haciendo el test que creamos para ti o escribiéndonos directamente
+      </p>
+      <Image
+        class="sparkles sparkles-right"
+        src={sparklesRight}
+        alt=""
+        height={80}
+      />
+    </div>
+    <div class="actions">
+      <a
+        href="https://tally.so/r/o96ZO1"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Empezar mi match
+      </a>
+      <a href={adviserWhatsappUrl} target="_blank" rel="noopener noreferrer">
+        Isa te asesora
+      </a>
+    </div>
+  </section>
+</div>
 
 <style>
+  .process {
+    position: relative;
+    overflow-x: clip;
+  }
+
+  .leaf {
+    position: absolute;
+    width: auto;
+    height: 21rem;
+    pointer-events: none;
+  }
+
+  .leaf-bottom {
+    bottom: 0;
+    left: -4.5rem;
+  }
+
+  .leaf-top {
+    top: 0;
+    right: -6rem;
+    transform: rotate(180deg);
+  }
+
   section {
     display: grid;
     gap: 1.5rem;
@@ -73,21 +126,63 @@ const steps = [
     color: var(--color-slate);
   }
 
+  .copy {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+    max-width: 40rem;
+  }
+
+  .sparkles {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    height: 4rem;
+    transform: translateY(-50%);
+    mix-blend-mode: multiply;
+    pointer-events: none;
+  }
+
+  .sparkles-left {
+    right: 100%;
+    margin-right: 1rem;
+  }
+
+  .sparkles-right {
+    left: 100%;
+    margin-left: 1rem;
+  }
+
+  .invite h2 {
+    font-size: clamp(1.75rem, 4.5vw, 2.5rem);
+  }
+
   .invite p {
     margin: 0;
-    max-width: 40rem;
     font-family: var(--font-heading);
+    font-size: 1.25rem;
     color: var(--color-slate);
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
   }
 
   .invite a {
     padding: 1rem 2.5rem;
-    border-radius: 2rem;
+    border-radius: 55% 45% 60% 40% / 50% 60% 40% 50%;
     background: var(--color-pill);
     font-family: var(--font-heading);
     font-weight: 700;
-    color: var(--color-mist);
+    color: var(--color-teal);
     text-decoration: none;
+  }
+
+  section {
+    position: relative;
   }
 
   ol {
@@ -132,6 +227,16 @@ const steps = [
 
   li p {
     margin: 0.25rem 0 0;
+  }
+
+  @media (min-width: 768px) {
+    .sparkles {
+      height: 5rem;
+    }
+
+    .invite p {
+      font-size: 1.375rem;
+    }
   }
 
   @media (min-width: 640px) {

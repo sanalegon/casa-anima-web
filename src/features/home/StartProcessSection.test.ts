@@ -38,16 +38,44 @@ describe("StartProcessSection", () => {
       name: "Tu proceso puede comenzar con una conversación",
     });
 
-    expect(heading.closest("section")?.textContent).toContain(
-      "Encuentra al profesional que haga match contigo en menos de 3 minutos haciendo el test que creamos para ti",
+    expect(
+      heading.closest("section")?.textContent?.replace(/\s+/g, " "),
+    ).toContain(
+      "Encuentra al profesional que haga match contigo en menos de 3 minutos haciendo el test que creamos para ti o escribiéndonos directamente",
     );
+  });
+
+  test("HOME-05 should place the conversation section after the steps section when the Home page loads", () => {
+    const headings = getAllByRole(page.body, "heading").map(
+      (heading) => heading.textContent,
+    );
+
+    expect(headings).toEqual([
+      "Conoce el paso a paso",
+      "Tu proceso puede comenzar con una conversación",
+    ]);
+  });
+
+  test("HOME-05 should open Empezar mi match in a new tab when the Home page loads", () => {
+    const link = getByRole(page.body, "link", { name: "Empezar mi match" });
+
+    expect(link.getAttribute("href")).toBe("https://tally.so/r/o96ZO1");
+    expect(link.getAttribute("target")).toBe("_blank");
   });
 
   test("HOME-05 should open Isa te asesora in a new tab when the Home page loads", () => {
     const link = getByRole(page.body, "link", { name: "Isa te asesora" });
 
-    expect(link.getAttribute("href")).toBe("https://wa.me/573018639351");
+    expect(link.getAttribute("href")).toBe(
+      "https://wa.me/573018639351?text=%C2%A1Hola%20Isa%21%20Vengo%20de%20la%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20preguntar%20sobre%20c%C3%B3mo%20comenzar%20mi%20proceso%20psicoterap%C3%A9utico%20con%20Casa%20%C3%81nima",
+    );
     expect(link.getAttribute("target")).toBe("_blank");
+  });
+
+  test("HOME-06 should head the steps section Conoce el paso a paso when the Home page loads", () => {
+    expect(
+      getByRole(page.body, "heading", { name: "Conoce el paso a paso" }),
+    ).toBeTruthy();
   });
 
   test("HOME-06 should list the five step titles in order when the Home page loads", () => {
