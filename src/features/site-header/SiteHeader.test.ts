@@ -19,7 +19,7 @@ describe("SiteHeader", () => {
   test("LAYOUT-01 should link the logo to the site base when the page loads", () => {
     const logoLink = getByRole(page.body, "link", { name: "Casa Ánima" });
 
-    expect(logoLink.getAttribute("href")).toBe("/casa-anima-web/");
+    expect(logoLink.getAttribute("href")).toBe("/");
   });
 
   test("LAYOUT-01 should list the five links in order with their targets when the page loads", () => {
@@ -31,11 +31,11 @@ describe("SiteHeader", () => {
         link.getAttribute("href"),
       ]),
     ).toEqual([
-      ["Inicio", "/casa-anima-web/"],
-      ["Quiénes somos", "/casa-anima-web/#quienes-somos"],
-      ["Servicios", "/casa-anima-web/#servicios"],
-      ["Equipo", "/casa-anima-web/#equipo"],
-      ["Contáctanos", "/casa-anima-web/#contacto"],
+      ["Inicio", "/"],
+      ["Quiénes somos", "/#quienes-somos"],
+      ["Servicios", "/#servicios"],
+      ["Equipo", "/#equipo"],
+      ["Contáctanos", "/#contacto"],
     ]);
   });
 });
