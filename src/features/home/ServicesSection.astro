@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+import PottedPhoto from "./PottedPhoto.astro";
+import clouds from "../../assets/decor/clouds.png";
+import terapia from "../../assets/home/service-terapia.png";
+import alquiler from "../../assets/home/card-alquiler-consultorio.png";
+import talleres from "../../assets/home/service-talleres.png";
+import perro from "../../assets/home/service-perro.png";
+import convenios from "../../assets/home/service-convenios.png";
+import formacion from "../../assets/home/card-grupal-formacion.png";
+
+const services = [
+  {
+    title: "Servicios de terapia psicológica Online y Presencial",
+    photo: terapia,
+    alt: "Computador portátil con una sesión de terapia en línea, una taza de café y una planta",
+  },
+  {
+    title: "Alquiler de consultorios para profesionales en salud mental",
+    photo: alquiler,
+    alt: "Consultorio con un diván gris, una lámpara y un mural de montañas en tonos verdes y ocres",
+  },
+  {
+    title: "Talleres y servicios de acompañamiento grupal a organizaciones",
+    photo: talleres,
+    alt: "Psicóloga dando un taller ante un grupo de personas con una presentación proyectada",
+  },
+  {
+    title: "Certificado de perro de apoyo emocional",
+    photo: perro,
+    alt: "Perro de apoyo emocional con un chaleco azul claro recostado junto a una mochila",
+  },
+  {
+    title: "Convenios organizacionales de atención en salud mental",
+    photo: convenios,
+    alt: "Grupo de personas sonriendo durante un taller con una psicóloga sentada en el suelo",
+  },
+  {
+    title: "Formación continua para terapeutas",
+    photo: formacion,
+    alt: "Grupo de terapeutas sonriendo sentados en una gradería azul durante una jornada de formación",
+  },
+];
+---
+
+<section id="servicios">
+  <Image
+    src={clouds}
+    alt=""
+    class="clouds"
+    widths={[800, 1600]}
+    sizes="100vw"
+  />
+  <h2>Conoce nuestros servicios</h2>
+  <ul>
+    {services.map(({ title, photo, alt }) => (
+      <li>
+        <PottedPhoto photo={photo} alt={alt} />
+        <h3>{title}</h3>
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  section {
+    position: relative;
+    display: grid;
+    gap: 1.5rem;
+    padding: 3rem 1.5rem;
+    background: var(--color-sky);
+    overflow: hidden;
+  }
+
+  .clouds {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  h2,
+  ul {
+    position: relative;
+  }
+
+  h2 {
+    margin: 0;
+    text-align: center;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    color: var(--color-slate);
+  }
+
+  ul {
+    display: grid;
+    gap: 3rem 1.5rem;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: 72rem;
+    margin: 0 auto;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.75rem;
+    text-align: center;
+  }
+
+  h3 {
+    margin: 0;
+    max-width: 9.5rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: var(--color-teal);
+  }
+
+  @media (min-width: 640px) {
+    ul {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 960px) {
+    ul {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    li {
+      flex-direction: row-reverse;
+      justify-content: center;
+    }
+
+    h3 {
+      flex: 0 1 9.5rem;
+    }
+  }
+</style>

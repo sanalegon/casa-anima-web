@@ -25,7 +25,7 @@ src/
       use<Name>.ts               ← logic layer: React hook — only when state outgrows the island, or is reused
       types.ts                   ← types, schemas, contracts, no runtime logic — only when 2+ files share them
   shared/                        ← only code used by 2+ slices — create when first needed
-  images/                        ← images imported through `astro:assets`
+  assets/                        ← images and media imported through `astro:assets`
   layouts/                       ← app composition: page shell (head, nav, footer slots), no feature logic
   pages/                         ← app composition: Astro routes that wire slices together, no feature logic
 ```

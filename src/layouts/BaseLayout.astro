@@ -1,0 +1,61 @@
+---
+import { Font } from "astro:assets";
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<html lang="es-CO">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <Font cssVariable="--font-heading" />
+    <Font cssVariable="--font-body" />
+  </head>
+  <body>
+    <slot name="header" />
+    <slot />
+    <slot name="footer" />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --color-teal: #134b63;
+    --color-slate: #34566a;
+    --color-mist: #8aa6b3;
+    --color-sky: #bccde0;
+    --color-pill: #d8e5e7;
+    --color-terracotta: #c4623f;
+    --color-background: #ffffff;
+    --color-text: #2b4252;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+    color: var(--color-slate);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
