@@ -1,8 +1,7 @@
 import { defineConfig, fontProviders } from "astro/config";
 
 export default defineConfig({
-  site: "https://sanalegon.github.io",
-  base: "/casa-anima-web",
+  site: "https://casaanima.co",
   fonts: [
     {
       provider: fontProviders.google(),
