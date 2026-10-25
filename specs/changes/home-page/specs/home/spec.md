@@ -32,8 +32,8 @@
   - GIVEN the Home page | WHEN it loads | THEN a section headed "Equipo Casita" has the id `equipo`
   - GIVEN that section | WHEN it loads | THEN it shows five portraits described with those names, in that order
   - GIVEN that section | WHEN it loads | THEN it shows no visible name, role or description text besides the heading
-- HOME-09 — The system MUST show the section "¿Dónde nos vemos?" (anchor `contacto`) with the address, "Virtual en todo el mundo", a map of the location and a WhatsApp link | test: ✅
+- HOME-09 — The system MUST show the section "¿Dónde nos vemos?" (anchor `contacto`) with the address, "Virtual en todo el mundo", a map of the location, and no WhatsApp link | test: ✅
   - GIVEN the Home page | WHEN it loads | THEN a section headed "¿Dónde nos vemos?" has the id `contacto`
   - GIVEN that section | WHEN it loads | THEN it shows "Cra. 71 # 32B-83 Belén, Rosales" and "Virtual en todo el mundo"
   - GIVEN that section | WHEN it loads | THEN it shows a map frame titled "Mapa de Casa Ánima"
-  - GIVEN that section | WHEN it loads | THEN a link "Escríbenos por WhatsApp" points to `https://wa.me/573018639351`
+  - GIVEN that section | WHEN it loads | THEN it shows no link "Escríbenos por WhatsApp"

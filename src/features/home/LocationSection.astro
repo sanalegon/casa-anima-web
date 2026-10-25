@@ -1,5 +1,5 @@
 ---
-import { address, whatsappUrl } from "../../shared/contact";
+import { address } from "../../shared/contact";
 
 const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(`${address}, Medellín`)}&output=embed`;
 ---
@@ -11,7 +11,6 @@ const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(`${address}, 
     <p>{address}</p>
     <p>Virtual en todo el mundo</p>
   </div>
-  <a href={whatsappUrl}>Escríbenos por WhatsApp</a>
 </section>
 
 <style>
@@ -20,7 +19,8 @@ const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(`${address}, 
     gap: 1.5rem;
     align-items: center;
     padding: 3rem 1.5rem;
-    background: var(--color-teal);
+    background: var(--color-teal) url("../../assets/decor/texture-teal.png")
+      center / cover;
     color: #ffffff;
     text-align: center;
   }
@@ -46,18 +46,10 @@ const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(`${address}, 
     border: 0;
   }
 
-  a {
-    color: #ffffff;
-  }
-
   @media (min-width: 640px) {
     section {
       grid-template-columns: 1fr 1.5fr 1fr;
       padding: 2rem 4rem;
-    }
-
-    a {
-      grid-column: 1 / -1;
     }
   }
 </style>

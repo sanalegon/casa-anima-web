@@ -22,6 +22,15 @@ describe("SiteFooter", () => {
     expect(link.getAttribute("href")).toBe("https://wa.me/573018639351");
   });
 
+  test("LAYOUT-02 should show the label right before the WhatsApp number when the page loads", () => {
+    const link = getByRole(page.body, "link", { name: "(+57) 301 8639351" });
+    const label = getByText(page.body, "Más información");
+
+    expect(label.tagName).not.toBe("A");
+    expect(label.nextElementSibling).toBe(link);
+    expect(label.parentElement).toBe(link.parentElement);
+  });
+
   test("LAYOUT-02 should link the email when the page loads", () => {
     const link = getByRole(page.body, "link", {
       name: "casa.anima.consultorios@gmail.com",
@@ -63,5 +72,27 @@ describe("SiteFooter", () => {
       "https://wa.me/573018639351?text=%C2%A1Hola%20Isa%21%20Vengo%20de%20la%20p%C3%A1gina%20web%20y%20me%20gustar%C3%ADa%20preguntar%20sobre%20c%C3%B3mo%20comenzar%20mi%20proceso%20psicoterap%C3%A9utico%20con%20Casa%20%C3%81nima",
     );
     expect(link.getAttribute("target")).toBe("_blank");
+  });
+
+  test("LAYOUT-03 should show the TikTok image outside a link when the page loads", () => {
+    const image = getByRole(page.body, "img", { name: "TikTok" });
+
+    expect(image.closest("a")).toBeNull();
+  });
+
+  test("LAYOUT-03 should show the social icons in order before the heading when the page loads", () => {
+    const names = ["Instagram", "Facebook", "TikTok", "WhatsApp"];
+    const icons = names.map((name) => getByRole(page.body, "img", { name }));
+    const heading = getByRole(page.body, "heading", {
+      name: "¡Nos vemos en Casita!",
+    });
+    // 4 = DOCUMENT_POSITION_FOLLOWING
+    const follows = (a: Element, b: Element) =>
+      Boolean(a.compareDocumentPosition(b) & 4);
+
+    expect(follows(icons[0], icons[1])).toBe(true);
+    expect(follows(icons[1], icons[2])).toBe(true);
+    expect(follows(icons[2], icons[3])).toBe(true);
+    expect(follows(icons[3], heading)).toBe(true);
   });
 });
