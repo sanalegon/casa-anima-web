@@ -22,6 +22,15 @@ describe("SiteFooter", () => {
     expect(link.getAttribute("href")).toBe("https://wa.me/573018639351");
   });
 
+  test("LAYOUT-02 should show the label right before the WhatsApp number when the page loads", () => {
+    const link = getByRole(page.body, "link", { name: "(+57) 301 8639351" });
+    const label = getByText(page.body, "Más información");
+
+    expect(label.tagName).not.toBe("A");
+    expect(label.nextElementSibling).toBe(link);
+    expect(label.parentElement).toBe(link.parentElement);
+  });
+
   test("LAYOUT-02 should link the email when the page loads", () => {
     const link = getByRole(page.body, "link", {
       name: "casa.anima.consultorios@gmail.com",

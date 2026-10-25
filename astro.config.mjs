@@ -15,5 +15,12 @@ export default defineConfig({
       cssVariable: "--font-body",
       fallbacks: ["Arial", "sans-serif"],
     },
+    {
+      provider: fontProviders.google(),
+      name: "Open Sans",
+      cssVariable: "--font-open-sans",
+      weights: [400, 700],
+      fallbacks: ["Arial", "sans-serif"],
+    },
   ],
 });

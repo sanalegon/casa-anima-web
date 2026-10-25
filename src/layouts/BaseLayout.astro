@@ -15,6 +15,7 @@ const { title } = Astro.props;
     <title>{title}</title>
     <Font cssVariable="--font-heading" />
     <Font cssVariable="--font-body" />
+    <Font cssVariable="--font-open-sans" />
   </head>
   <body>
     <slot name="header" />
@@ -26,6 +27,7 @@ const { title } = Astro.props;
 <style is:global>
   :root {
     --color-teal: #134b63;
+    --color-sea: #598895;
     --color-slate: #34566a;
     --color-mist: #8aa6b3;
     --color-sky: #bccde0;
