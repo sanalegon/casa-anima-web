@@ -11,7 +11,7 @@
   - GIVEN any page | WHEN it loads | THEN the footer shows the text "Más información" right before the link "(+57) 301 8639351", on the same line
   - GIVEN any page | WHEN it loads | THEN the footer shows a link "casa.anima.consultorios@gmail.com" to `mailto:casa.anima.consultorios@gmail.com`
   - GIVEN any page | WHEN it loads | THEN the footer shows the address "Cra. 71 # 32B-83 Belén, Rosales"
-- LAYOUT-03 — The system MUST show, in the footer of every page, above "¡Nos vemos en Casita!", a row of four large brand-color social icons in this order: Instagram, Facebook, TikTok and WhatsApp — Instagram, Facebook and WhatsApp link to their pages, each opening in a new tab; TikTok has no account yet, so its icon is shown but is not a link | test: -
+- LAYOUT-03 — The system MUST show, in the footer of every page, above "¡Nos vemos en Casita!", a row of four large brand-color social icons in this order: Instagram, Facebook, TikTok and WhatsApp — Instagram, Facebook and WhatsApp link to their pages, each opening in a new tab; TikTok has no account yet, so its icon is shown but is not a link | test: ✅
   - GIVEN any page | WHEN it loads | THEN the footer shows a link named "Instagram" to `https://www.instagram.com/casaanima_psicologia` that opens in a new tab
   - GIVEN any page | WHEN it loads | THEN the footer shows a link named "Facebook" to `https://www.facebook.com/p/Casa-Ánima-Consultorios-61568582250827/` that opens in a new tab
   - GIVEN any page | WHEN it loads | THEN the footer shows an image named "TikTok" that is not inside a link

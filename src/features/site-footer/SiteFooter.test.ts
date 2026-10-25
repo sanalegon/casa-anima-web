@@ -73,4 +73,26 @@ describe("SiteFooter", () => {
     );
     expect(link.getAttribute("target")).toBe("_blank");
   });
+
+  test("LAYOUT-03 should show the TikTok image outside a link when the page loads", () => {
+    const image = getByRole(page.body, "img", { name: "TikTok" });
+
+    expect(image.closest("a")).toBeNull();
+  });
+
+  test("LAYOUT-03 should show the social icons in order before the heading when the page loads", () => {
+    const names = ["Instagram", "Facebook", "TikTok", "WhatsApp"];
+    const icons = names.map((name) => getByRole(page.body, "img", { name }));
+    const heading = getByRole(page.body, "heading", {
+      name: "¡Nos vemos en Casita!",
+    });
+    // 4 = DOCUMENT_POSITION_FOLLOWING
+    const follows = (a: Element, b: Element) =>
+      Boolean(a.compareDocumentPosition(b) & 4);
+
+    expect(follows(icons[0], icons[1])).toBe(true);
+    expect(follows(icons[1], icons[2])).toBe(true);
+    expect(follows(icons[2], icons[3])).toBe(true);
+    expect(follows(icons[3], heading)).toBe(true);
+  });
 });
