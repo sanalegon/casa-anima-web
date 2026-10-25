@@ -1,4 +1,9 @@
-import { getByRole, getByText, getByTitle } from "@testing-library/dom";
+import {
+  getByRole,
+  getByText,
+  getByTitle,
+  queryByRole,
+} from "@testing-library/dom";
 import { beforeEach, describe, expect, test } from "vitest";
 import { renderToDocument } from "../../shared/render-to-document";
 import LocationSection from "./LocationSection.astro";
@@ -34,11 +39,9 @@ describe("LocationSection", () => {
     expect(map.tagName).toBe("IFRAME");
   });
 
-  test("HOME-09 should link Escríbenos por WhatsApp to the WhatsApp number when the Home page loads", () => {
-    const link = getByRole(page.body, "link", {
-      name: "Escríbenos por WhatsApp",
-    });
-
-    expect(link.getAttribute("href")).toBe("https://wa.me/573018639351");
+  test("HOME-09 should show no link Escríbenos por WhatsApp when the Home page loads", () => {
+    expect(
+      queryByRole(page.body, "link", { name: "Escríbenos por WhatsApp" }),
+    ).toBeNull();
   });
 });
